@@ -5,8 +5,7 @@ def lisa_element(nimetus, hind, kogus):
     global elemendid
     nimetused = []
     for element in elemendid:
-        if nimetus in element.values():
-            nimetused.append(nimetus)
+        nimetused.append(list(element.values())[0])
     if nimetus in nimetused:
         print("element {} on juba olemas".format(nimetus))
     else:
@@ -14,12 +13,9 @@ def lisa_element(nimetus, hind, kogus):
 
 
 #lisame ELEMENDID KORRAGA juurde
-def loe_elemendid():
+def lisa_elemendid(elementide_nimekiri):
     global elemendid
-    loetud_elemendid = []
-    for element in elemendid:
-        loetud_elemendid.append(element)
-    return loetud_elemendid
+    elemendid = elementide_nimekiri
 
 #loeme kongreetne element
 def loe_element(nimetus):
@@ -31,6 +27,18 @@ def loe_element(nimetus):
         print("element {} ei eksisteeri".format(nimetus))
     else:
         return elemendid[nimetused.index(nimetus)]
+
+#uuendame KONGREETSE elemendi
+def uuenda_element(nimetus, hind, kogus):
+    global elemendid
+    nimetused = []
+    for element in elemendid:
+        nimetused.append(list(element.values())[0])
+    if nimetus not in nimetused:
+        print("element {} ei saa uuendada, kuna ta ei eksisteeri".format(nimetus))
+    else:
+        elemendid[nimetused.index(nimetus)] = {"nimetus":nimetus, "hind":hind, "kogus":kogus}
+
 
 def main():
     #loome katseandmestik
@@ -48,6 +56,12 @@ def main():
     lisa_element("vein", 5.60, 5)
 
     print(loe_element("leib"))
+    print(loe_element("limonaad"))
+    
+    #testime uuendamist
+    
+    uuenda_element("vein", 10.0, 10)
+    print(loe_element("vein"))
 
 if __name__ == "__main__":
     main()
