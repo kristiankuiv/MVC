@@ -84,6 +84,7 @@ def main():
 
     #testime kõikide elementide kustutamist
     kustuta_elemendid()
+    print(loe_elemendid())
 
 if __name__ == "__main__":
     main()
